@@ -9,7 +9,7 @@ class ClassroomSeeder extends Seeder
 {
     public function run(): void
     {
-
+        //
     }
 }
 
