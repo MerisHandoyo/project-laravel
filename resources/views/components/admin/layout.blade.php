@@ -10,13 +10,65 @@
 <title>Admin</title>
 
 <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
-```
+
+<style>
+    .sidebar-link {
+        transition: background-color .15s ease, color .15s ease;
+    }
+
+    .sidebar-link:hover {
+        background-color: #f3f4f6;
+        color: #111827;
+    }
+
+    .sidebar-link:hover .sidebar-icon svg {
+        color: #111827;
+    }
+
+    .sidebar-link-active {
+        background-color: #f3f4f6;
+        color: #111827;
+        font-weight: 600;
+    }
+
+    .sidebar-link-active .sidebar-icon svg {
+        color: #111827;
+    }
+
+    .dark .sidebar-link:hover,
+    .dark .sidebar-link-active {
+        background-color: #374151;
+        color: #ffffff;
+    }
+
+    .dark .sidebar-link:hover .sidebar-icon svg,
+    .dark .sidebar-link-active .sidebar-icon svg {
+        color: #ffffff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .sidebar-link:hover,
+        .sidebar-link-active {
+            background-color: #374151;
+            color: #ffffff;
+        }
+
+        .sidebar-link:hover .sidebar-icon svg,
+        .sidebar-link-active .sidebar-icon svg {
+            color: #ffffff;
+        }
+    }
+
+    .sidebar-link:focus-visible {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+</style>
 
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-900">
 
-```
 <div class="antialiased bg-gray-50 dark:bg-gray-900 min-h-screen">
 
     <!-- Navbar -->

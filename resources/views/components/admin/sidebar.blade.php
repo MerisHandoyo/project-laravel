@@ -43,20 +43,32 @@
                 ' />
 
             <!-- 3. Students -->
-            <x-admin.menu-item href="/admin/students" label="Students"
+            <x-admin.menu-item href="/admin/students" label="Student"
                 icon='
-                    <path fill-rule="evenodd"
-                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                        clip-rule="evenodd">
+                    <path
+                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
                     </path>
                 ' />
             <!-- 4. Classroom -->
             <x-admin.menu-item href="/admin/classroom" label="Classroom"
                 icon='
-                    <path fill-rule="evenodd"
-                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4V5h12v10zM6 7a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm0 4a1 1 0 011-1h4a1 1 0 110 2H7a1 1 0 01-1-1z"
-                    clip-rule="evenodd">
+                    <path
+                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
                     </path>
+                ' />
+            <!-- 5. Teachers -->
+            <x-admin.menu-item href="/admin/teachers" label="Teachers"
+                icon='
+                    <path d="M12 12a4 4 0 100-8 4 4 0 000 8z"></path>
+                    <path d="M4 20a8 8 0 0116 0H4z"></path>
+                ' />
+
+            <!-- 6. Subjects -->
+            <x-admin.menu-item href="/admin/subjects" label="Subjects"
+                icon='
+                    <path d="M4 3h12a2 2 0 012 2v14H6a2 2 0 01-2-2V3z"></path>
+                    <path d="M8 7h6M8 11h6M8 15h4" stroke="currentColor" stroke-width="1.5"
+                    fill="none" stroke-linecap="round"></path>
                 ' />
         </ul>
 

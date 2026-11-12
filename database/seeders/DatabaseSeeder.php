@@ -24,7 +24,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Student::factory()->count(25)->create([]);
-        Classroom::factory()->count(10)->create([]);
+        $this->call([
+            SubjectSeeder::class,
+            TeacherSeeder::class,
+        ]);
+
+        $classrooms = Classroom::factory()->count(4)->create();
+
+        foreach ($classrooms as $classroom) {
+            Student::factory()->count(6)->create(['classroom_id' => $classroom->id]);
+        }
     }
 }
