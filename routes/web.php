@@ -24,7 +24,9 @@ Route::get('/layout', function () {
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
-Route::resource('/admin/students', StudentController::class);
-Route::resource('/admin/classroom', ClassroomController::class);
+Route::resource('/admin/student', StudentController::class)
+    ->names('admin.student');
+Route::resource('/admin/classroom', ClassroomController::class)
+    ->names('admin.classroom');
 Route::resource('/admin/teachers', TeacherController::class);
 Route::resource('/admin/subjects', SubjectController::class);
