@@ -10,13 +10,33 @@ class SubjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = "Subjects";
+        $search = "Search subject...";
+        $searchTerm = trim($request->input('search', ''));
 
-        $subjects = Subject::with('teacher')->get();
+        $subjects = Subject::with('teacher')
+            ->when($searchTerm, function ($query) use ($searchTerm) {
+                $query->whereRaw(
+                    'LOWER(name) LIKE ?',
+                    [strtolower($searchTerm) . '%']
+                );
+            })
+            ->get();
 
-        return view('admin.subjects', compact('title', 'subjects'));
+        $subjectNames = Subject::select('name')
+            ->distinct()
+            ->orderBy('name')
+            ->pluck('name');
+
+        return view('admin.subjects', compact(
+            'title',
+            'search',
+            'searchTerm',
+            'subjects',
+            'subjectNames'
+        ));
     }
 
     /**
@@ -32,7 +52,17 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Subject::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()
+            ->route('admin.subject.index')
+            ->with('success', 'Subject successfully added.');
     }
 
     /**

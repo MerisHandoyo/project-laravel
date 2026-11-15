@@ -1,21 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Teacher;
+
 use Illuminate\Http\Request;
+use App\Models\Teacher;
+use App\Models\Subject;
 
 class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = "Teachers";
+        $search = "Search teacher...";
+        $searchTerm = trim($request->input('search', ''));
 
-        $teachers = Teacher::with('subject')->get();
+        $subjects = Subject::all();
 
-        return view('admin.teachers', compact('title', 'teachers'));
+        $teachers = Teacher::with('subject')
+            ->when($searchTerm, function ($query) use ($searchTerm) {
+                $query->whereRaw(
+                    'LOWER(name) LIKE ?',
+                    [strtolower($searchTerm) . '%']
+                );
+            })
+            ->get();
+
+        $teacherNames = Teacher::select('name')
+            ->distinct()
+            ->orderBy('name')
+            ->pluck('name');
+
+        return view('admin.teachers', compact(
+            'title',
+            'search',
+            'searchTerm',
+            'teachers',
+            'subjects',
+            'teacherNames'
+        ));
     }
 
     /**
@@ -31,7 +56,23 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'niy' => 'required|digits:10|unique:teachers,niy',
+            'subject_id' => 'required|exists:subjects,id|unique:teachers,subject_id',
+            'start_date' => 'required|date',
+        ]);
+
+        Teacher::create([
+            'name' => $request->name,
+            'niy' => $request->niy,
+            'subject_id' => $request->subject_id,
+            'start_date' => $request->start_date,
+        ]);
+
+        return redirect()
+            ->route('admin.teacher.index')
+            ->with('success', 'Teacher successfully added.');
     }
 
     /**

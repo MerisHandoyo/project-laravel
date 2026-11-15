@@ -26,7 +26,12 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 Route::resource('/admin/student', StudentController::class)
     ->names('admin.student');
+
 Route::resource('/admin/classroom', ClassroomController::class)
     ->names('admin.classroom');
-Route::resource('/admin/teachers', TeacherController::class);
-Route::resource('/admin/subjects', SubjectController::class);
+
+Route::resource('/admin/teachers', TeacherController::class)
+    ->names('admin.teacher');
+
+Route::resource('/admin/subjects', SubjectController::class)
+    ->names('admin.subject');

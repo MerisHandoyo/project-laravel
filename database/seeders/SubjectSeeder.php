@@ -9,6 +9,23 @@ class SubjectSeeder extends Seeder
 {
     public function run(): void
     {
-        Subject::factory()->count(10)->create();
+        $subjects = [
+            'Matematika',
+            'Bahasa Indonesia',
+            'Bahasa Inggris',
+            'Pemrograman Web',
+            'Basis Data',
+            'Pemrograman Berorientasi Objek',
+            'Produk Kreatif dan Kewirausahaan',
+            'Pendidikan Pancasila',
+            'Sejarah',
+            'Pendidikan Jasmani',
+        ];
+
+        foreach ($subjects as $subject) {
+            Subject::create([
+                'name' => $subject,
+            ]);
+        }
     }
 }
